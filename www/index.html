@@ -7,7 +7,7 @@
   </head>
   <body>
   <font size=7 color=blue>
-  log3: <p>
+  ver0055: <p>
   <p id="log"></p>
   </font>
   </body>
@@ -18,30 +18,32 @@ document.addEventListener('deviceready', onDeviceReady, false);
 young_log("init01");
 function onDeviceReady() {
 	young_log("init1");
-	foo();
-	young_log("init_end");
-}
-
-//---------------------------
-function foo()
-{
 	young_log("init5");
 	//var zip = require('org.chromium.zip.Zip');
   
 	window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
 	young_log("init6");
-    function onFileSystemSuccess(fileSystem) {
-		young_log("init7");
-		var dirname = "test_zip_out";
-		downloadPath = fileSystem.root.toURL() + '/'+ dirname;
-		zip.unzip("cdvfile://192.168.1.102/apk/test.zip", 
-           downloadPath, 
-           function(){
-              young_log('Zip decompressed successfully');
-           });
-		young_log("init8");
-		}
+
+	young_log("init_end");
+}
+
+function onFileSystemSuccess(fileSystem) {
+	young_log("init7");
+	var dirname = "test_zip_out";
+	downloadPath = fileSystem.root.toURL() + '/'+ dirname;
+	zip.unzip("cdvfile://192.168.1.102/apk/test.zip", 
+        downloadPath, 
+        function(){
+            young_log('Zip decompressed successfully');
+        });
+	young_log("init8");
+}
+
+//---------------------------
+function foo()
+{
+
 }
   /*young_log("init6");
   var fileUrl = null;
