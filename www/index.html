@@ -33,13 +33,11 @@ function foo()
 {
   young_log("init5");
   var zip = require('org.chromium.zip.Zip');
-
+  young_log("init6");
   var fileUrl = null;
   var dirUrl = null;
 
-  function onError() { young_log("onwrite");}
-  function done () { young_log("onwrite");}
-  young_log("init6");
+  young_log("init7");
   window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'http://archive.apache.org/dist/cordova/cordova-2.9.1-src.zip', true);
@@ -68,6 +66,13 @@ function foo()
   zip.unzip(fileUrl, dirUrl, done, function(progressEvent) {
           progress = progressEvent.loaded / progressEvent.total;
           young_log("progress:"+progress);});
+
+	function onError(error) {
+		young_log( "fail");
+        young_log( "error code:"+ error.code);
+        }	
+  
+    function done (a) { young_log("onwrite");}		  
 }
 
 
