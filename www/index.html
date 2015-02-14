@@ -27,8 +27,8 @@ function onDeviceReady() {
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
     function onFileSystemSuccess(fileSystem) {
 		young_log( "success" );
-        young_log(  fileSystem.name );
-        young_log(  fileSystem.root.name );
+        young_log(  "name:"+fileSystem.name );
+        young_log(  "root.name:"+fileSystem.root.name );
 		young_log("FileTransfer type:"+typeof FileTransfer);
 
 		var fileTransfer = new FileTransfer();
