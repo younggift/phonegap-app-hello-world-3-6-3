@@ -7,7 +7,7 @@
   </head>
   <body>
   <font size=7 color=blue>
-  ver0106: <p>
+  ver0111: <p>
   <p id="log"></p>
   </font>
   </body>
@@ -33,7 +33,7 @@ function onDeviceReady() {
 		young_log("init7");
 		var dirname = "test_zip_out";
 		downloadPath = fileSystem.root.toURL() + '/'+ dirname;
-		zip.unzip("cdvfile://192.168.1.102/apk/test.zip", 
+		zip.unzip("http://192.168.1.102/apk/test.zip", 
 			downloadPath, 
 			function(){
 				young_log('Zip decompressed successfully');
