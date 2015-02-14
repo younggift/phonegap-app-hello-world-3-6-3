@@ -7,7 +7,7 @@
   </head>
   <body>
   <font size=7 color=blue>
-  log2: <p>
+  log3: <p>
   <p id="log"></p>
   </font>
   </body>
@@ -18,9 +18,6 @@ document.addEventListener('deviceready', onDeviceReady, false);
 young_log("init01");
 function onDeviceReady() {
 	young_log("init1");
-	young_log("init2");
-	young_log("init3");
-	young_log("init4");
 	foo();
 }
 
@@ -31,8 +28,8 @@ function young_log(message)
 //---------------------------
 function foo()
 {
-  young_log("init5");
-  //var zip = require('org.chromium.zip.Zip');
+	oung_log("init5");
+	//var zip = require('org.chromium.zip.Zip');
   
 	window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
