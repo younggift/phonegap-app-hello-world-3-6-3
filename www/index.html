@@ -53,9 +53,11 @@ function onDeviceReady() {
 				young_log("download complete: " + entry.fullPath);
 				},
 			function(error) {
-				young_log("download error source " + error.source);
-				young_log("download error target " + error.target);
-				young_log("download error code" + error.code);
+				young_log("download error:");
+				young_log("source: " + error.source);
+				young_log("target: " + error.target);
+				young_log("code:" + error.code);
+				young_log("http_status:" + error.http_status);
 				},
 			false
 			);
