@@ -23,7 +23,7 @@ function onDeviceReady() {
 	young_log("init3");
 	var filePath = "/test.zip";
 	young_log("init4");
-	
+	young_log("FileTransfer type:"+typeof FileTransfer);
 	window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
     function onFileSystemSuccess(fileSystem) {
@@ -32,7 +32,7 @@ function onDeviceReady() {
         young_log(  fileSystem.root.name );
 		
 		//fileSystem.root.getFile("test_young.txt", {create: true, exclusive: false}, gotFileEntry, fail);
-		young_log(typeof FileTransfer);
+		young_log("FileTransfer type:"+typeof FileTransfer);
 		var fileTransfer = new FileTransfer();
 		young_log("init5");
 	/*	fileTransfer.onprogress = function(progressEvent) {
