@@ -30,12 +30,16 @@ window.requestFileSystem(
 LocalFileSystem.PERSISTENT, 0,
 //if its invoked, prepare the paths and then invoke filetransfer
 function onFileSystemSuccess(fileSystem) {
+young_log("init5");
 fileSystem.root.getFile(
 //create a dummy file to get paths
 "dummy.html", {create: true, exclusive: false},
 function gotFileEntry(fileEntry){
+young_log("init6");
 var sPath = fileEntry.toURL().replace("dummy.html","");
+young_log("init7");
 //invoke the method to transfer files
+young_log("fileTransfer:"+typeof fileTransfer);
 var fileTransfer = new FileTransfer();
 young_log("fileTransfer:"+typeof fileTransfer);
 //remove the dummy file
