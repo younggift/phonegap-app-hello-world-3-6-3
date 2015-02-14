@@ -20,25 +20,29 @@ function onDeviceReady() {
 	young_log("init1");
 	young_log("init5");
 	//var zip = require('org.chromium.zip.Zip');
-  
-	window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
+  	window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
 	young_log("init6");
-
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
 	young_log("init_end");
+
+    function fail(error) {
+		young_log( "fail");
+        young_log( "error code:"+ error.code);
+    }	
+	function onFileSystemSuccess(fileSystem) {
+		young_log("init7");
+		var dirname = "test_zip_out";
+		downloadPath = fileSystem.root.toURL() + '/'+ dirname;
+		zip.unzip("cdvfile://192.168.1.102/apk/test.zip", 
+			downloadPath, 
+			function(){
+				young_log('Zip decompressed successfully');
+			});
+		young_log("init8");
+	}
+	
 }
 
-function onFileSystemSuccess(fileSystem) {
-	young_log("init7");
-	var dirname = "test_zip_out";
-	downloadPath = fileSystem.root.toURL() + '/'+ dirname;
-	zip.unzip("cdvfile://192.168.1.102/apk/test.zip", 
-        downloadPath, 
-        function(){
-            young_log('Zip decompressed successfully');
-        });
-	young_log("init8");
-}
 
 //---------------------------
 function foo()
