@@ -19,9 +19,8 @@ function onDeviceReady() {
 //[http://docs.phonegap.com/en/edge/cordova_file_file.md.html#FileTransfer]
 	young_log("init1");
 	young_log("init2");
-	var uri = encodeURI("http://192.168.1.102/apk/test.zip");
 	young_log("init3");
-	var filePath = "/test.zip";
+
 	young_log("init4");
 	young_log("FileTransfer type:"+typeof FileTransfer);
 	window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
@@ -30,22 +29,26 @@ function onDeviceReady() {
 		young_log( "success" );
         young_log(  fileSystem.name );
         young_log(  fileSystem.root.name );
-		
-		//fileSystem.root.getFile("test_young.txt", {create: true, exclusive: false}, gotFileEntry, fail);
 		young_log("FileTransfer type:"+typeof FileTransfer);
+
 		var fileTransfer = new FileTransfer();
 		young_log("init5");
-	/*	fileTransfer.onprogress = function(progressEvent) {
+		fileTransfer.onprogress = function(progressEvent) {
 			if (progressEvent.lengthComputable) {
 				loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
 			} else {
 				loadingStatus.increment();
 			}
-		};*/
+		};
 		young_log("after onprogress.");
+
+		var filename = "/test.zip";
+		downloadPath = fileSystem.root.fullPath + filename;
+		var uri = encodeURI("http://192.168.1.102/apk/test.zip");
+		young_log("downloadPath:"+downloadPath);
 		fileTransfer.download(
 			uri,
-			filePath,
+			downloadPath,
 			function(entry) {
 				young_log("download complete: " + entry.fullPath);
 				},
