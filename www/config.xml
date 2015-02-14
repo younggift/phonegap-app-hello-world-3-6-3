@@ -73,6 +73,7 @@
     <!--
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
     -->
+	<gap:plugin name="org.chromium.zip" version="2.1.0" />
 
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
