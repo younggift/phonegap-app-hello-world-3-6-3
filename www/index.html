@@ -33,16 +33,16 @@ function onDeviceReady() {
 
 		var fileTransfer = new FileTransfer();
 		young_log("init5");
-		fileTransfer.onprogress = function(progressEvent) {
+		/*fileTransfer.onprogress = function(progressEvent) {
 			if (progressEvent.lengthComputable) {
 				loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
 			} else {
 				loadingStatus.increment();
 			}
 		};
-		young_log("after onprogress.");
+		young_log("after onprogress.");*/
 
-		var filename = "/test.zip";
+		var filename = "test.zip";
 		downloadPath = fileSystem.root.fullPath + filename;
 		var uri = encodeURI("http://192.168.1.102/apk/test.zip");
 		young_log("downloadPath:"+downloadPath);
@@ -60,7 +60,6 @@ function onDeviceReady() {
 				{
 					young_log("code: FILE_NOT_FOUND_ERR" + error.code);
 				}
-				
 				young_log("http_status:" + error.http_status);
 				},
 			false
