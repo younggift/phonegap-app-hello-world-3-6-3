@@ -6,8 +6,9 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
   </head>
   <body>
-  <font size=7>
-  <p id="log">log2: </p>
+  <font size=7 color=blue>
+  log1: <p>
+  <p id="log"></p>
   </font>
   </body>
 
@@ -16,60 +17,12 @@ young_log("init00");
 document.addEventListener('deviceready', onDeviceReady, false);
 young_log("init01");
 function onDeviceReady() {
-//[http://docs.phonegap.com/en/edge/cordova_file_file.md.html#FileTransfer]
 	young_log("init1");
 	young_log("init2");
 	young_log("init3");
-
 	young_log("init4");
-	young_log("FileTransfer type:"+typeof FileTransfer);
-	window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
-    function onFileSystemSuccess(fileSystem) {
-		young_log( "success" );
-        young_log(  "name:"+fileSystem.name );
-        young_log(  "root.name:"+fileSystem.root.name );
-		young_log("FileTransfer type:"+typeof FileTransfer);
-
-		var fileTransfer = new FileTransfer();
-		young_log("init5");
-		/*fileTransfer.onprogress = function(progressEvent) {
-			if (progressEvent.lengthComputable) {
-				loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
-			} else {
-				loadingStatus.increment();
-			}
-		};
-		young_log("after onprogress.");*/
-
-		var filename = "test.zip";
-		downloadPath = fileSystem.root.toURL() + '/'+ filename;
-		var uri = encodeURI("http://192.168.1.102/apk/test.zip");
-		young_log("downloadPath:"+downloadPath);
-		fileTransfer.download(
-			uri,
-			downloadPath,
-			function(entry) {
-				young_log("download complete: " + entry.fullPath);
-				},
-			function(error) {
-				young_log("download error:");
-				young_log("source: " + error.source);
-				young_log("target: " + error.target);
-				if(FileTransferError.FILE_NOT_FOUND_ERR == error.code)
-				{
-					young_log("code: FILE_NOT_FOUND_ERR" + error.code);
-				}
-				young_log("http_status:" + error.http_status);
-				},
-			false
-			);
-    }
 	
-    function fail(error) {
-		young_log( "fail");
-        young_log( "error code:"+ error.code);
-    }	
+
 	
 }
 
