@@ -37,8 +37,8 @@ function foo()
   var fileUrl = null;
   var dirUrl = null;
 
-  onError = function() { young_log("onwrite");}
-  done    = function() { young_log("onwrite");}
+  function onError() { young_log("onwrite");}
+  function done () { young_log("onwrite");}
   young_log("init6");
   window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
   var xhr = new XMLHttpRequest();
