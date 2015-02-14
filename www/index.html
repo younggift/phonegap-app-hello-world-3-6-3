@@ -36,7 +36,9 @@ function foo()
   
 	window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
+	young_log("init6");
     function onFileSystemSuccess(fileSystem) {
+		young_log("init7");
 		var dirname = "test_zip_out";
 		downloadPath = fileSystem.root.toURL() + '/'+ dirname;
 		zip.unzip("cdvfile://192.168.1.102/apk/test.zip", 
@@ -44,6 +46,7 @@ function foo()
            function(){
               young_log('Zip decompressed successfully');
            });
+		young_log("init8");
 		}
 }
   /*young_log("init6");
