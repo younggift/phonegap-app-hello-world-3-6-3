@@ -25,38 +25,43 @@ function onDeviceReady() {
 	young_log("init4");
 	
 	window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
-window.requestFileSystem(
-//invoke the file system
-LocalFileSystem.PERSISTENT, 0,
-//if its invoked, prepare the paths and then invoke filetransfer
-function onFileSystemSuccess(fileSystem) {
-young_log("init5");
-fileSystem.root.getFile(
-//create a dummy file to get paths
-"dummy.html", {create: true, exclusive: false},
-function gotFileEntry(fileEntry){
-young_log("init6");
-var sPath = fileEntry.toURL().replace("dummy.html","");
-young_log("init7");
-//invoke the method to transfer files
-young_log("fileTransfer:"+typeof fileTransfer);
-var fileTransfer = new FileTransfer();
-young_log("fileTransfer:"+typeof fileTransfer);
-//remove the dummy file
-fileEntry.remove();
 
-//and now, we can download
-
-},
-fail);
-},
-fail); 
+    function onFileSystemSuccess(fileSystem) {
+		young_log( "success" );
+        young_log(  fileSystem.name );
+        young_log(  fileSystem.root.name );
 		
-	young_log(typeof fileTransfer);
-	var fileTransfer = new FileTransfer();
-		
-		
+		//fileSystem.root.getFile("test_young.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+		young_log(typeof FileTransfer);
+		var fileTransfer = new FileTransfer();
+		young_log("init5");
+	/*	fileTransfer.onprogress = function(progressEvent) {
+			if (progressEvent.lengthComputable) {
+				loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+			} else {
+				loadingStatus.increment();
+			}
+		};*/
+		young_log("after onprogress.");
+		fileTransfer.download(
+			uri,
+			filePath,
+			function(entry) {
+				young_log("download complete: " + entry.fullPath);
+				},
+			function(error) {
+				young_log("download error source " + error.source);
+				young_log("download error target " + error.target);
+				young_log("download error code" + error.code);
+				},
+			false
+			);
+    }
 	
+    function fail(error) {
+		young_log( "fail");
+        young_log( "error code:"+ error.code);
+    }	
 	
 }
 
