@@ -19,12 +19,9 @@ young_log("init01");
 function onDeviceReady() {
 	young_log("init1");
 	foo();
+	young_log("init_end");
 }
 
-function young_log(message)
-{
-	document.getElementById("log").innerHTML += (message + "<p>");
-}	
 //---------------------------
 function foo()
 {
@@ -87,7 +84,10 @@ function foo()
   
     function done (a) { young_log("onwrite");}		  */
 
-
+function young_log(message)
+{
+	document.getElementById("log").innerHTML += (message + "<p>");
+}
 
     </script>
  
