@@ -23,35 +23,51 @@ function onDeviceReady() {
 	young_log("init3");
 	var filePath = "/test.zip";
 	young_log("init4");
-	young_log(typeof FileTranser);
-	var fileTransfer = new FileTransfer();
-	young_log("init5");
-/*	fileTransfer.onprogress = function(progressEvent) {
-		if (progressEvent.lengthComputable) {
-			loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
-		} else {
-			loadingStatus.increment();
-		}
-	};*/
-	young_log("after onprogress.");
-	fileTransfer.download(
-		uri,
-		filePath,
-		function(entry) {
-			young_log("download complete: " + entry.fullPath);
-			},
-		function(error) {
-			young_log("download error source " + error.source);
-			young_log("download error target " + error.target);
-			young_log("download error code" + error.code);
-			},
-		false
-		);
+	
+	window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
+
+    function onFileSystemSuccess(fileSystem) {
+		young_log( "success" );
+        young_log(  fileSystem.name );
+        young_log(  fileSystem.root.name );
+		
+		//fileSystem.root.getFile("test_young.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+		young_log(typeof FileTranser);
+		var fileTransfer = new FileTransfer();
+		young_log("init5");
+	/*	fileTransfer.onprogress = function(progressEvent) {
+			if (progressEvent.lengthComputable) {
+				loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+			} else {
+				loadingStatus.increment();
+			}
+		};*/
+		young_log("after onprogress.");
+		fileTransfer.download(
+			uri,
+			filePath,
+			function(entry) {
+				young_log("download complete: " + entry.fullPath);
+				},
+			function(error) {
+				young_log("download error source " + error.source);
+				young_log("download error target " + error.target);
+				young_log("download error code" + error.code);
+				},
+			false
+			);
+
+		
+		
+    }
+	
+	
 }
 
 function young_log(message)
 {
-	document.getElementById("log").innerHTML += (message + "<br>");
+	document.getElementById("log").innerHTML += (message + "<p>");
 }	
     </script>
  
