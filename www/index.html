@@ -32,8 +32,21 @@ function young_log(message)
 function foo()
 {
   young_log("init5");
-  var zip = require('org.chromium.zip.Zip');
-  young_log("init6");
+  //var zip = require('org.chromium.zip.Zip');
+  
+	window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
+    function onFileSystemSuccess(fileSystem) {
+		var dirname = "test_zip_out";
+		downloadPath = fileSystem.root.toURL() + '/'+ dirname;
+		zip.unzip("cdvfile://192.168.1.102/apk/test.zip", 
+           downloadPath, 
+           function(){
+              young_log('Zip decompressed successfully');
+           });
+		}
+}
+  /*young_log("init6");
   var fileUrl = null;
   var dirUrl = null;
 
@@ -72,8 +85,8 @@ function foo()
         young_log( "error code:"+ error.code);
         }	
   
-    function done (a) { young_log("onwrite");}		  
-}
+    function done (a) { young_log("onwrite");}		  */
+
 
 
     </script>
